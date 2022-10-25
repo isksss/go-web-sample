@@ -10,6 +10,7 @@ import (
 var templates = make(map[string]*template.Template)
 
 func main() {
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("public/"))))
 	port := "8000"
 	templates["index"] = loadTemplate("index")
 	http.HandleFunc("/", handleIndex)
